@@ -1,0 +1,45 @@
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-default">
+          <!-- Default panel contents -->
+          <div class="panel-heading">Store Locations</div>
+              <div class="panel-body">
+                <input type="text" required [(ngModel)]="zip" placeholder="Enter zip code ..." >
+                <button type="button" class="btn btn-primary" (click)="callSharedService()">Submit</button>
+              </div>
+              <table class="table">
+                    <tr *ngFor="let store of stores" >
+                        <td> 
+                            <!--<img src="F://workspace/angularjs/my-store/src/app/locator/icon.jpeg" />-->
+                            <button type="button" class="btn btn-default" (click)="callMapComponent(store.coordinates[0],store.coordinates[1])">
+  <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+</button>
+                            <strong>{{store.name}}</strong><br/>
+                            <small>{{store.streetAddress}}</small><br/>
+                            <small>
+                            {{store.city}},{{store.stateProvCode}}-{{store.zip}}</small><br/><small><strong>{{store.phoneNumber}}</strong>
+                            </small><br/>
+                         </td>
+                     </tr>
+              </table>
+
+              <p class="text-info">Total # of all the service requests is :
+                  <span class="badge">{{this._sharedService.totReqsMade}}</span>
+              </p>    
+        </div>
+    </div>
+    <div class="col-md-6">
+        <app-map *ngIf="clicked"></app-map>
+        
+        <!--<agm-map [latitude]="lat" [longitude]="lng">
+  <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+</agm-map>-->
+    <!--<iframe
+  width="600"
+  height="450"
+  frameborder="0" style="border:0"
+  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDCYkMy-26ThuW-49zMX7YoSvIFvr6zAcQ&q=Space+Needle,Seattle+WA" allowfullscreen>
+</iframe>-->
+    </div>
+</div>

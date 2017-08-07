@@ -1,0 +1,50 @@
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading">Search Results</div>
+            <div class="panel-body">
+                <input type="text" required [(ngModel)]="query" placeholder="Enter product ..." >
+                <button type="button" class="btn btn-primary" (click)="callSharedService()">Search</button>
+                <input type="hidden" >
+            </div>
+            <table class="table">
+                    <tr *ngFor="let product of products" (click)="callProductService(product.itemId)">
+                        <td> 
+                            <strong>{{product.name}}</strong><br/>
+                            <small>{{product.description}}</small><br/>
+                            
+                         </td>
+                        <td><img  src="{{product.thumbnailImage}}" alt="..." class="img-thumbnail" onclick="document.getElementById('product').=''"></td>
+                     </tr>
+            </table>
+
+            <p class="text-info">Total # of all the service requests is :
+                  <span class="badge">{{this._sharedService.totReqsMade}}</span>
+            </p>    
+        </div>
+    </div>
+    <div *ngIf="selectedProduct" id="product" class="col-md-6" >
+        <div class="panel panel-default" >
+          <!-- Default panel contents -->
+          <div class="panel-heading">Product Description</div>
+            <div class="panel-body">
+                <img class="medium" src="{{selectedProduct.mediumImage}}"  />
+                <div style="float:right">
+                    <!--<strong>{{selectedProduct.itemId}}</strong><br/>-->
+                    <p>
+                    <strong>{{selectedProduct.name}}</strong><br/>
+                    <strong>MSRP:</strong><small>{{selectedProduct.msrp}}</small><br/>
+                    <strong>Sale price:</strong><small>{{selectedProduct.salePrice}}</small><br/>
+                    <strong>UPC:</strong> <small>{{selectedProduct.upc}}</small><br/>
+                    <strong>Brand:</strong> <small>{{selectedProduct.brandName}}</small><br/>
+                    <strong>Model:</strong><small> {{selectedProduct.modelNumber}}</small><br/>
+                    <strong>Customer Rating:</strong><small> {{selectedProduct.customerRating}}</small><br/>
+                    
+                    </p>
+                    <strong>Description:</strong><small>{{selectedProduct.shortDescription}}</small><br/>
+                </div>
+            </div>    
+        </div>
+    </div>
+</div>
